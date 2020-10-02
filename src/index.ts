@@ -2,7 +2,7 @@ import *  as awilix  from 'awilix'
 import initDomain from './domain/initDomain'
 import initData from './data/initData'
 import initApplication from './application/initApplication'
-import initApi from './api/initApi'
+import initApi from './application/initApplication'
 
 // Create the container and set the injectionMode to PROXY (which is also the default).
 

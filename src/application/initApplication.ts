@@ -1,3 +1,5 @@
 import * as awilix from "awilix";
 
-export default (container: awilix.AwilixContainer) => {};
+export default (container: awilix.AwilixContainer) => {
+    
+};
