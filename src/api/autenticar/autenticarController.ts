@@ -1,12 +1,11 @@
 import { ApiRegisterType } from "../initApi";
 
-export default class AuthController {
+export default class AutenticarController {
     constructor(opts:ApiRegisterType) {
       
     }
 
-
-    public autenticar()
+    public autenticar(usuario:string, senha:string)
     {
         
     }
