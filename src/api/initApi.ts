@@ -1,18 +1,27 @@
-import awilix,{ Lifetime,AwilixContainer } from "awilix";
-import * as express from 'express';
-import { Router } from "express";
-import AutenticarController from "./autenticar/autenticarController";
+import * as awilix from "awilix";
+import * as express from "express";
+import { IAutenticarApplication } from "../application";
+import AutenticarController from "./controllers/autenticarController";
+import autenticarRouter from "./routers/autenticarRouter";
 
-export interface ApiRegisterType
-{
-    authController:AutenticarController,
-    router:Router
+export interface ApiRegisterType {
+  autenticarApplication: IAutenticarApplication;
 }
 
+export default (container: awilix.AwilixContainer) => {
+  const appExpress = express.default();
+  container.register({
+    appExpress: awilix.asValue(appExpress),
+    autenticarController: awilix.asClass(AutenticarController, {
+      lifetime: "SINGLETON",
+    }),
+  });
+  appExpress.use(express.json());
+  const server = appExpress.listen(8081, function () {
+    var host = (<any>server.address()).address;
+    var port = (<any>server.address()).port;
+    console.log("Example app listening at http://%s:%s", host, port);
+  });
 
-export default (container: AwilixContainer) => {
-    container.register({
-        authController: awilix.asClass(AutenticarController,{ lifetime: Lifetime.SINGLETON }),
-        router: awilix.asFunction(express.Router(),{ lifetime: Lifetime.SINGLETON }),
-      })
+  autenticarRouter(appExpress,container.resolve("autenticarController"))
 };

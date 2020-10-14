@@ -8,7 +8,7 @@ export default (container: awilix.AwilixContainer) => {
       })
 };
 
-export const FAKE = (container: awilix.AwilixContainer) => {
+export const initDataFake = (container: awilix.AwilixContainer) => {
     container.register({
         usuarioRepository: awilix.asClass<IUsuarioRepository>(UsuarioRepositoryFake,{ lifetime: Lifetime.SINGLETON }),
       })

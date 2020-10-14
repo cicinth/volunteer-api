@@ -1,3 +1,5 @@
+import { IUsuarioEntity } from "../../../entities";
+
 export interface IUsuarioRepository
 {
     getUsuario(login:string):IUsuarioEntity;
@@ -16,7 +18,7 @@ export class UsuarioRepositoryFake implements IUsuarioRepository {
         nome: "Sophie",
         sobrenome: "Novaes",
         email: "sophiebarbararaquelnovaes_@velc.com.br",
-        senha: "",
+        senha: "adsdassdasdadsa",
       },
     ];
 

@@ -1,12 +1,12 @@
-class CriptografiaDomain implements ICriptografiaDomain
+export class CriptografiaDomain implements ICriptografiaDomain
 {
     criptografar(texto: string): string {
         return texto;
     }
 
 }
-
-interface ICriptografiaDomain
+ 
+export interface ICriptografiaDomain
 {
     criptografar(texto:string):string
 }

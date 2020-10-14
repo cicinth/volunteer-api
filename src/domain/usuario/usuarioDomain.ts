@@ -1,5 +1,7 @@
+import { IUsuarioEntity } from "../../entities";
 import { IUsuarioRepository } from "../../data/repository";
 import { DomainRegisterType } from "../initDomain";
+import { ICriptografiaDomain } from "../criptografia/criptografiaDomain";
 
 export interface IUsuarioDomain
 {

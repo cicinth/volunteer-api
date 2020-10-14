@@ -1,19 +1,20 @@
 import * as awilix from "awilix";
 import { Lifetime } from "awilix";
-import { IUsuarioRepository, UsuarioRepositoryFake } from "../data/repository";
+import { IUsuarioRepository } from "../data/repository";
+import { CriptografiaDomain, ICriptografiaDomain } from "./criptografia/criptografiaDomain";
 import { UsuarioDomain, IUsuarioDomain } from "./usuario/usuarioDomain";
 
 export interface DomainRegisterType
 {
-  autenticarDomain:IUsuarioDomain,
-  usuarioRepository:IUsuarioRepository
+  usuarioDomain:IUsuarioDomain,
   criptografiaDomain:ICriptografiaDomain
+  usuarioRepository:IUsuarioRepository
 }
 
 export default (container: awilix.AwilixContainer) => {
     
     container.register({
-        authController: awilix.asClass<IUsuarioDomain>(UsuarioDomain,{ lifetime: Lifetime.SINGLETON }),
+        usuarioDomain: awilix.asClass<IUsuarioDomain>(UsuarioDomain,{ lifetime: Lifetime.SINGLETON }),
         criptografiaDomain:awilix.asClass<ICriptografiaDomain>(CriptografiaDomain,{ lifetime: Lifetime.SINGLETON }),
       })
 };
