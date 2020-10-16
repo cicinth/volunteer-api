@@ -15,7 +15,7 @@ export default class AutenticarController {
     autenticarModel.documento = usuario;
     autenticarModel.senha = senha;
     
-      const usuarioAutenticado = this.autenticarApplication.autenticarUsuario(autenticarModel);
+      const usuarioAutenticado = this.autenticarApplication.autenticarUsuarioAsync(autenticarModel);
       res.json(usuarioAutenticado);
   }
 }

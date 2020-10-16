@@ -6,10 +6,12 @@ import { AutenticarUsuarioModel } from "./model/autenticar/autenticarUsuarioMode
 import { CadastrarUsuarioModel } from "./model";
 
 export interface IAutenticarApplication {
-  cadastrarNovoUsuario(cadastrarUsuarioModel: CadastrarUsuarioModel): void;
-  autenticarUsuario(
+  cadastrarNovoUsuarioAsync(
+    cadastrarUsuarioModel: CadastrarUsuarioModel
+  ): Promise<void>;
+  autenticarUsuarioAsync(
     autenticarUsuarioModel: AutenticarUsuarioModel
-  ): IUsuarioAutenticadoModel;
+  ): Promise<IUsuarioAutenticadoModel>;
 }
 
 export class AutenticarApplication implements IAutenticarApplication {
@@ -18,18 +20,34 @@ export class AutenticarApplication implements IAutenticarApplication {
   constructor(props: ApplicationRegisterType) {
     this.usuarioDomain = props.usuarioDomain;
   }
-  
-  cadastrarNovoUsuario(cadastrarUsuarioModel: CadastrarUsuarioModel): void {
-    throw new Error("Method not implemented.");
+
+  async cadastrarNovoUsuarioAsync(
+    cadastrarUsuarioModel: CadastrarUsuarioModel
+  ): Promise<void> {
+    const validoModel = cadastrarUsuarioModel.isValido();
+    if (!validoModel.isValido) throw validoModel.mensagem;
+
+    const usuarioEntity: IUsuarioEntity = {
+      id: undefined,
+      email: cadastrarUsuarioModel.email,
+      nome: cadastrarUsuarioModel.nome,
+      tipoPessoa: cadastrarUsuarioModel.tipoPessoa,
+      senha: cadastrarUsuarioModel.senha,
+      celular: cadastrarUsuarioModel.celular,
+      cpfCnpj: cadastrarUsuarioModel.cpfCnpj,
+      dtNascimento: cadastrarUsuarioModel.dtNascimento,
+    };
+
+    await this.usuarioDomain.cadastrarUsuarioAsync(usuarioEntity);
   }
 
-  autenticarUsuario(
+  async autenticarUsuarioAsync(
     autenticarUsuarioModel: AutenticarUsuarioModel
-  ): IUsuarioAutenticadoModel {
+  ): Promise<IUsuarioAutenticadoModel> {
     const validoModel = autenticarUsuarioModel.isValido();
     if (!validoModel.isValido) throw validoModel.mensagem;
 
-    const usuarioEntity: IUsuarioEntity = this.usuarioDomain.autenticarUsuario(
+    const usuarioEntity: IUsuarioEntity = await this.usuarioDomain.autenticarUsuarioAsync(
       autenticarUsuarioModel.documento!,
       autenticarUsuarioModel.senha!
     );
@@ -38,7 +56,6 @@ export class AutenticarApplication implements IAutenticarApplication {
 
     const usuarioAutenticadoModel = {
       nome: usuarioEntity.nome!,
-      sobrenome: usuarioEntity.sobrenome!,
       email: usuarioEntity.email!,
       token: token,
     };

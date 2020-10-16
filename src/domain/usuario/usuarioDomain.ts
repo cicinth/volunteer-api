@@ -4,7 +4,11 @@ import { DomainRegisterType } from "../initDomain";
 import { ICriptografiaDomain } from "../criptografia/criptografiaDomain";
 
 export interface IUsuarioDomain {
-  autenticarUsuario(usuario: string, senha: string): IUsuarioEntity;
+  cadastrarUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void>;
+  autenticarUsuarioAsync(
+    usuario: string,
+    senha: string
+  ): Promise<IUsuarioEntity>;
 }
 
 export class UsuarioDomain implements IUsuarioDomain {
@@ -16,12 +20,23 @@ export class UsuarioDomain implements IUsuarioDomain {
     this.criptografiaDomain = props.criptografiaDomain;
   }
 
-  autenticarUsuario(usuario: string, senha: string): IUsuarioEntity {
+  async cadastrarUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void> {
+    usuarioEntity.senha = this.criptografiaDomain.criptografar(
+      usuarioEntity.senha!
+    );
+
+    await this.usuarioRepository.addUsuarioAsync(usuarioEntity);
+  }
+
+  async autenticarUsuarioAsync(
+    usuario: string,
+    senha: string
+  ): Promise<IUsuarioEntity> {
     if (!usuario) {
       throw "Usuário não pode ser vazio";
     }
 
-    const usuarioEntity = this.usuarioRepository.getUsuario(usuario);
+    const usuarioEntity = await this.usuarioRepository.getUsuarioAsync(usuario);
     if (
       !usuarioEntity ||
       usuarioEntity.senha !== this.criptografiaDomain.criptografar(senha)

@@ -9,6 +9,7 @@ export class CadastrarUsuarioModel implements IModel {
   cpfCnpj?: string;
   celular?: string;
   senha?: string;
+  dtNascimento?: Date;
 
   isValido(): ValidoModel {
     if (!this.email)
@@ -23,6 +24,12 @@ export class CadastrarUsuarioModel implements IModel {
       return { isValido: false, mensagem: "Celular deve ser preenchido" };
     if (!this.senha)
       return { isValido: false, mensagem: "Senha deve ser preenchida" };
+
+    if (!this.dtNascimento)
+      return {
+        isValido: false,
+        mensagem: "Data de Nascimento deve ser preenchida",
+      };
 
     if (this.tipoPessoa === "FISICA") {
       if (!ValidarUtil.isCPFValido(this.cpfCnpj))

@@ -1,8 +1,10 @@
 export interface IUsuarioEntity {
-  id: string;
+  id: string | undefined;
   nome?: string;
-  sobrenome?: string;
+  celular?: string;
+  dtNascimento?: Date;
   email?: string;
   senha?: string;
+  cpfCnpj?:string;
   tipoPessoa?: "FISICA" | "JURIDICA";
 }

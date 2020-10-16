@@ -10,7 +10,7 @@ export class AutenticarUsuarioModel implements IModel {
     if (!this.documento)
       return { isValido: false, mensagem: "Documento deve ser preenchido" };
     if (!this.senha)
-      return { isValido: false, mensagem: "Preenchida deve ser preenchida" };
+      return { isValido: false, mensagem: "Senha deve ser preenchida" };
 
     return {
       isValido: true,

@@ -14,14 +14,19 @@ const dados = {
   senha: "q1a1z1",
 };
 
+process.on("unhandledRejection", (e) => {
+  throw e;
+});
+
 describe("Autenticar Teste", () => {
   it("usuário em branco", () => {
     const autenticarModel = new AutenticarUsuarioModel();
     autenticarModel.documento = "";
     autenticarModel.senha = dados.senha;
 
-    assert.Throw(
-      () => autenticarApplication.autenticarUsuario(autenticarModel),
+    assert.throw(
+      async () =>
+        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
       "Usuario deve ser preenchido"
     );
   });
@@ -31,7 +36,8 @@ describe("Autenticar Teste", () => {
     autenticarModel.documento = dados.documento;
     autenticarModel.senha = "";
     assert.Throw(
-      () => autenticarApplication.autenticarUsuario(autenticarModel),
+      async () =>
+        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
       "Senha deve ser preenchida"
     );
   });
@@ -42,19 +48,21 @@ describe("Autenticar Teste", () => {
     autenticarModel.senha = "123123123";
 
     assert.Throw(
-      () => autenticarApplication.autenticarUsuario(autenticarModel),
+      async () =>
+        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
       "Usuário ou senha inválidos"
     );
   });
 
-  it("usuário autenticado com sucesso", () => {
+  it("usuário autenticado com sucesso", async () => {
     const autenticarModel = new AutenticarUsuarioModel();
     autenticarModel.documento = dados.documento;
     autenticarModel.senha = dados.senha;
 
-    const usuario = autenticarApplication.autenticarUsuario(autenticarModel);
+    const usuario = await autenticarApplication.autenticarUsuarioAsync(
+      autenticarModel
+    );
     assert.isTrue(usuario.nome);
-    assert.isTrue(usuario.sobrenome);
     assert.isTrue(usuario.email);
     assert.isTrue(usuario.token);
   });

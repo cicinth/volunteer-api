@@ -1,7 +1,5 @@
-export interface IUsuarioAutenticadoModel
-{
-    nome:string;
-    sobrenome:string;
-    email:string;
-    token:string
+export interface IUsuarioAutenticadoModel {
+  nome: string;
+  email: string;
+  token: string;
 }
