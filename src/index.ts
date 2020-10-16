@@ -19,17 +19,15 @@ export default (()=>{
 })();
 
 
-// export const indexTest = ()=>{
-//   const container = awilix.createContainer({
-//     injectionMode: awilix.InjectionMode.PROXY
-//   })
+export const TesteDiInit = ()=>{
+  const container = awilix.createContainer({
+    injectionMode: awilix.InjectionMode.PROXY
+  })
   
-//   initApi(container);
-//   initApplication(container);
-//   initDomain(container);
-//   initDataFake(container);
-
-//   return container
-// }
+  initDataFake(container);
+  initDomain(container);
+  initApplication(container); 
+  return container
+}
 
 

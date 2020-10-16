@@ -1,3 +1,4 @@
+import { AutenticarUsuarioModel } from "../../application/model";
 import { IAutenticarApplication } from "../../application";
 import { ApiRegisterType } from "../initApi";
 
@@ -9,10 +10,12 @@ export default class AutenticarController {
 
   public autenticar(req: any, res: any): void {
     const { usuario, senha } = req.body;
-      const usuarioAutenticado = this.autenticarApplication.autenticarUsuario(
-        usuario,
-        senha
-      );
-      res.end(usuarioAutenticado);
+
+    const autenticarModel = new AutenticarUsuarioModel();
+    autenticarModel.documento = usuario;
+    autenticarModel.senha = senha;
+    
+      const usuarioAutenticado = this.autenticarApplication.autenticarUsuario(autenticarModel);
+      res.json(usuarioAutenticado);
   }
 }
