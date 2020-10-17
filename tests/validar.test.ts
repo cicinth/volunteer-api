@@ -11,7 +11,7 @@ describe("Validações Teste", () => {
   });
 
   it("CNPJ valido", () => {
-    assert.isNotTrue(ValidarUtil.isCNPJValido("63.626.234/0001-69"));
+    assert.isTrue(ValidarUtil.isCNPJValido("63.626.234/0001-69"));
   });
   it("CNPJ inválido", () => {
     assert.isNotTrue(ValidarUtil.isCNPJValido(""));
@@ -19,7 +19,7 @@ describe("Validações Teste", () => {
   });
 
   it("E-mail valido", () => {
-    assert.isNotTrue(
+    assert.isTrue(
       ValidarUtil.isEmailValido("sophiebarbararaquelnovaes_@velc.com.br")
     );
   });
@@ -31,7 +31,7 @@ describe("Validações Teste", () => {
   });
 
   it("Celular valido", () => {
-    assert.isNotTrue(ValidarUtil.isCelularValido("11988884444"));
+    assert.isTrue(ValidarUtil.isCelularValido("11988884444"));
   });
   it("Celular inválido", () => {
     assert.isNotTrue(ValidarUtil.isCelularValido(""));
