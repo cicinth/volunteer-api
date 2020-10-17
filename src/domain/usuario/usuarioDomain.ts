@@ -33,7 +33,7 @@ export class UsuarioDomain implements IUsuarioDomain {
     senha: string
   ): Promise<IUsuarioEntity> {
     if (!usuario) {
-      throw "Usuário não pode ser vazio";
+      throw Error("Usuário não pode ser vazio");
     }
 
     const usuarioEntity = await this.usuarioRepository.getUsuarioAsync(usuario);
@@ -41,7 +41,7 @@ export class UsuarioDomain implements IUsuarioDomain {
       !usuarioEntity ||
       usuarioEntity.senha !== this.criptografiaDomain.criptografar(senha)
     ) {
-      throw "Usuário ou senha inválidos";
+      throw Error("Usuário ou senha inválidos");
     }
 
     return usuarioEntity;

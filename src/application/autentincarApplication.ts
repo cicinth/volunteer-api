@@ -25,7 +25,7 @@ export class AutenticarApplication implements IAutenticarApplication {
     cadastrarUsuarioModel: CadastrarUsuarioModel
   ): Promise<void> {
     const validoModel = cadastrarUsuarioModel.isValido();
-    if (!validoModel.isValido) throw validoModel.mensagem;
+    if (!validoModel.isValido) throw Error(validoModel.mensagem)
 
     const usuarioEntity: IUsuarioEntity = {
       id: undefined,
@@ -45,7 +45,7 @@ export class AutenticarApplication implements IAutenticarApplication {
     autenticarUsuarioModel: AutenticarUsuarioModel
   ): Promise<IUsuarioAutenticadoModel> {
     const validoModel = autenticarUsuarioModel.isValido();
-    if (!validoModel.isValido) throw validoModel.mensagem;
+    if (!validoModel.isValido) throw new Error(validoModel.mensagem);
 
     const usuarioEntity: IUsuarioEntity = await this.usuarioDomain.autenticarUsuarioAsync(
       autenticarUsuarioModel.documento!,

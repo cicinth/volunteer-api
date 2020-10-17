@@ -15,7 +15,9 @@ export class UsuarioRepository implements IUsuarioRepository {
 }
 
 export class UsuarioRepositoryFake implements IUsuarioRepository {
-  async addUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void> {}
+  async addUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void> {
+    return await new Promise((ok,error)=> ok());
+  }
   async getUsuarioAsync(login: string): Promise<IUsuarioEntity> {
     const dados: Array<IUsuarioEntity> = [
       {
@@ -30,6 +32,6 @@ export class UsuarioRepositoryFake implements IUsuarioRepository {
       },
     ];
 
-    return new Promise((ok) => ok(dados.filter((x) => x.email === login)[0]));
+    return await new Promise((ok,error) => ok(dados.filter((x) => x.email === login)[0]));
   }
 }

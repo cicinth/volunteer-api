@@ -14,32 +14,26 @@ const dados = {
   senha: "q1a1z1",
 };
 
-process.on("unhandledRejection", (e) => {
-  throw e;
-});
-
 describe("Autenticar Teste", () => {
   it("usuário em branco", () => {
     const autenticarModel = new AutenticarUsuarioModel();
     autenticarModel.documento = "";
     autenticarModel.senha = dados.senha;
+    autenticarApplication.autenticarUsuarioAsync(autenticarModel)
+    .catch((ex)=>{
+      assert.equal(ex.message,"Documento deve ser preenchido")
+    })
 
-    assert.throw(
-      async () =>
-        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
-      "Usuario deve ser preenchido"
-    );
   });
 
   it("senha em branco", () => {
     const autenticarModel = new AutenticarUsuarioModel();
     autenticarModel.documento = dados.documento;
     autenticarModel.senha = "";
-    assert.Throw(
-      async () =>
-        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
-      "Senha deve ser preenchida"
-    );
+    autenticarApplication.autenticarUsuarioAsync(autenticarModel)
+    .catch((ex)=>{
+      assert.equal(ex.message,"Senha deve ser preenchida")
+    })
   });
 
   it("usuário ou senha inválidos", () => {
@@ -47,11 +41,11 @@ describe("Autenticar Teste", () => {
     autenticarModel.documento = "teste123";
     autenticarModel.senha = "123123123";
 
-    assert.Throw(
-      async () =>
-        await autenticarApplication.autenticarUsuarioAsync(autenticarModel),
-      "Usuário ou senha inválidos"
-    );
+    autenticarApplication.autenticarUsuarioAsync(autenticarModel)
+    .catch((ex)=>{
+      assert.equal(ex.message,"Usuário ou senha inválidos")
+    });
+    
   });
 
   it("usuário autenticado com sucesso", async () => {
