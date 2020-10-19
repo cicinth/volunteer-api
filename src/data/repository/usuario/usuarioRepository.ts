@@ -2,14 +2,14 @@ import { IUsuarioEntity } from "../../../entities";
 
 export interface IUsuarioRepository {
   addUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void>;
-  getUsuarioAsync(login: string): Promise<IUsuarioEntity>;
+  getUsuarioPorEmailAsync(login: string): Promise<IUsuarioEntity>;
 }
 
 export class UsuarioRepository implements IUsuarioRepository {
   addUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void> {
     throw new Error("Method not implemented.");
   }
-  getUsuarioAsync(login: string): Promise<IUsuarioEntity> {
+  getUsuarioPorEmailAsync(login: string): Promise<IUsuarioEntity> {
     throw new Error("Method not implemented.");
   }
 }
@@ -18,7 +18,7 @@ export class UsuarioRepositoryFake implements IUsuarioRepository {
   async addUsuarioAsync(usuarioEntity: IUsuarioEntity): Promise<void> {
     return await new Promise((ok,error)=> ok());
   }
-  async getUsuarioAsync(login: string): Promise<IUsuarioEntity> {
+  async getUsuarioPorEmailAsync(login: string): Promise<IUsuarioEntity> {
     const dados: Array<IUsuarioEntity> = [
       {
         id: "357119d753344e02b3f1b37f7eb90bfe",

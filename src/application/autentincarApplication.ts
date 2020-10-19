@@ -48,16 +48,13 @@ export class AutenticarApplication implements IAutenticarApplication {
     if (!validoModel.isValido) throw new Error(validoModel.mensagem);
 
     const usuarioEntity: IUsuarioEntity = await this.usuarioDomain.autenticarUsuarioAsync(
-      autenticarUsuarioModel.documento!,
+      autenticarUsuarioModel.email!,
       autenticarUsuarioModel.senha!
     );
-
-    const token = "";
 
     const usuarioAutenticadoModel = {
       nome: usuarioEntity.nome!,
       email: usuarioEntity.email!,
-      token: token,
     };
 
     return usuarioAutenticadoModel;

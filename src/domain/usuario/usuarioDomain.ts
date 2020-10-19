@@ -29,14 +29,14 @@ export class UsuarioDomain implements IUsuarioDomain {
   }
 
   async autenticarUsuarioAsync(
-    usuario: string,
+    email: string,
     senha: string
   ): Promise<IUsuarioEntity> {
-    if (!usuario) {
+    if (!email) {
       throw Error("Usuário não pode ser vazio");
     }
 
-    const usuarioEntity = await this.usuarioRepository.getUsuarioAsync(usuario);
+    const usuarioEntity = await this.usuarioRepository.getUsuarioPorEmailAsync(email);
     if (
       !usuarioEntity ||
       usuarioEntity.senha !== this.criptografiaDomain.criptografar(senha)
