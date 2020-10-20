@@ -1,6 +1,6 @@
 import { assert, expect } from "chai";
-import { TesteDiInit } from "../src";
-import { ICriptografiaDomain } from "../src/domain/criptografia/criptografiaDomain";
+import { TesteDiInit } from "../../src";
+import { ICriptografiaDomain } from "../../src/domain/criptografia/criptografiaDomain";
 
 const container = TesteDiInit();
 

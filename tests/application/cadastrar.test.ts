@@ -1,7 +1,7 @@
 import {  expect } from "chai";
-import { TesteDiInit } from "../src";
-import { IAutenticarApplication } from "../src/application";
-import { CadastrarUsuarioModel } from "../src/application/model";
+import { TesteDiInit } from "../../src";
+import { IAutenticarApplication } from "../../src/application";
+import { CadastrarUsuarioModel } from "../../src/application/model";
 
 const container = TesteDiInit();
 

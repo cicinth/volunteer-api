@@ -1,5 +1,5 @@
 import { expect } from "chai";
-import { ValidarUtil } from "../src/util";
+import { ValidarUtil } from "../../src/util";
 
 describe("Validações Teste", () => {
   it("CPF valido", () => {
