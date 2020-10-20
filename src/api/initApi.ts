@@ -18,7 +18,7 @@ export default (container: awilix.AwilixContainer) => {
     }),
   });
   appExpress.use(express.json());
-  const server = appExpress.listen(3000, function () {
+  const server = appExpress.listen(process.env.EXPRESS_PORT, function () {
     var host = (<any>server.address()).address;
     var port = (<any>server.address()).port;
     console.log("App listening at http://%s:%s", host, port);
@@ -39,7 +39,9 @@ export default (container: awilix.AwilixContainer) => {
 function verifyJWT(req: any, res: any, next: any) {
   var token = req.headers["x-access-token"];
   if (!token)
-    return res.status(401).json({ auth: false, message: "Token não foi enviado" });
+    return res
+      .status(401)
+      .json({ auth: false, message: "Token não foi enviado" });
 
   var secret: jwt.Secret = process.env.SECRET!;
   jwt.verify(token, secret, function (err: any, decoded: any) {
@@ -48,7 +50,7 @@ function verifyJWT(req: any, res: any, next: any) {
         .status(500)
         .json({ auth: false, message: "Falha na autenticação com o token" });
 
-        res.json(decoded.usuario);
+    res.json(decoded.usuario);
     next();
   });
 }

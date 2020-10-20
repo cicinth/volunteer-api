@@ -12,7 +12,12 @@
         "program": "${workspaceFolder}/src/index.ts",
         "outFiles": [
           "${workspaceFolder}/dist/**/*.js"
-        ]
+        ],
+        "env": {
+          "SECRET":"teste",
+          "SESSION_USR_EXPIRE_IN":"300",
+          "EXPRESS_PORT":"3000"
+        }
       },
       {
         "name": "Docker Node.js Launch",
