@@ -15,13 +15,13 @@ const dados = {
 describe("Autenticar Teste", () => {
   it("usuário em branco", () => {
     usuarioDomain.autenticarUsuarioAsync("", dados.senha).catch((ex) => {
-      expect(ex.message).eq("Documento deve ser preenchido");
+      expect(ex.message).eq("Usuário não pode ser vazio");
     });
   });
 
   it("senha em branco", () => {
     usuarioDomain.autenticarUsuarioAsync(dados.email, "").catch((ex) => {
-      expect(ex.message).eq("Senha deve ser preenchida");
+      expect(ex.message).eq("Usuário ou senha inválidos");
     });
   });
 
