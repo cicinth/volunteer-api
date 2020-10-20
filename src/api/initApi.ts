@@ -18,10 +18,10 @@ export default (container: awilix.AwilixContainer) => {
     }),
   });
   appExpress.use(express.json());
-  const server = appExpress.listen(8081, function () {
+  const server = appExpress.listen(3000, function () {
     var host = (<any>server.address()).address;
     var port = (<any>server.address()).port;
-    console.log("Example app listening at http://%s:%s", host, port);
+    console.log("App listening at http://%s:%s", host, port);
   });
 
   var autenticarController = container.resolve<AutenticarController>(
@@ -39,18 +39,16 @@ export default (container: awilix.AwilixContainer) => {
 function verifyJWT(req: any, res: any, next: any) {
   var token = req.headers["x-access-token"];
   if (!token)
-    return res.status(401).json({ auth: false, message: "No token provided." });
+    return res.status(401).json({ auth: false, message: "Token não foi enviado" });
 
   var secret: jwt.Secret = process.env.SECRET!;
   jwt.verify(token, secret, function (err: any, decoded: any) {
     if (err)
       return res
         .status(500)
-        .json({ auth: false, message: "Failed to authenticate token." });
+        .json({ auth: false, message: "Falha na autenticação com o token" });
 
         res.json(decoded.usuario);
-    // se tudo estiver ok, salva no request para uso posterior
-    // req.userId = decoded.id;
     next();
   });
 }
