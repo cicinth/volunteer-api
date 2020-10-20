@@ -15,6 +15,6 @@ const dados = {
 describe("Criptografia Teste", ()=>  {
   it("Criptografar senha", ()=>  {
     const senhaCriptografada = criptografiaDomain.criptografar(dados.senha);
-    assert.notEqual(senhaCriptografada, dados.senha);
+    expect(senhaCriptografada != dados.senha)
   });
 });

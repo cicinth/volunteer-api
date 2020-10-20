@@ -1,40 +1,36 @@
-import { assert, expect } from "chai";
+import { expect } from "chai";
 import { ValidarUtil } from "../src/util";
 
 describe("Validações Teste", () => {
   it("CPF valido", () => {
-    assert.isTrue(ValidarUtil.isCPFValido("191.191.191.00"));
+    expect(ValidarUtil.isCPFValido("191.191.191.00")).eq(true);
   });
   it("CPF inválido", () => {
-    assert.isNotTrue(ValidarUtil.isCPFValido(""));
-    assert.isNotTrue(ValidarUtil.isCPFValido("191.191.191.11"));
+    expect(ValidarUtil.isCPFValido("")).eq(false);
+    expect(ValidarUtil.isCPFValido("191.191.191.11")).eq(false);
   });
 
   it("CNPJ valido", () => {
-    assert.isTrue(ValidarUtil.isCNPJValido("63.626.234/0001-69"));
+    expect(ValidarUtil.isCNPJValido("63.626.234/0001-69")).eq(true);
   });
   it("CNPJ inválido", () => {
-    assert.isNotTrue(ValidarUtil.isCNPJValido(""));
-    assert.isNotTrue(ValidarUtil.isCNPJValido("63.626.555/0001-11"));
+    expect(ValidarUtil.isCNPJValido("")).eq(false);
+    expect(ValidarUtil.isCNPJValido("63.626.555/0001-11")).eq(false);
   });
 
   it("E-mail valido", () => {
-    assert.isTrue(
-      ValidarUtil.isEmailValido("sophiebarbararaquelnovaes_@velc.com.br")
-    );
+      expect(ValidarUtil.isEmailValido("sophiebarbararaquelnovaes_@velc.com.br")).eq(true);
   });
   it("E-mail inválido", () => {
-    assert.isNotTrue(ValidarUtil.isEmailValido(""));
-    assert.isNotTrue(
-      ValidarUtil.isEmailValido("sophi!!@ebarbararaquelnovaes_@velc.com.br")
-    );
+    expect(ValidarUtil.isEmailValido("")).eq(false);
+    expect(ValidarUtil.isEmailValido("sophi!!@ebarbararaquelnovaes_@velc.com.br")).eq(false);
   });
 
   it("Celular valido", () => {
-    assert.isTrue(ValidarUtil.isCelularValido("11988884444"));
+    expect(ValidarUtil.isCelularValido("11988884444")).eq(true);
   });
   it("Celular inválido", () => {
-    assert.isNotTrue(ValidarUtil.isCelularValido(""));
-    assert.isNotTrue(ValidarUtil.isCelularValido("555558888"));
+    expect(ValidarUtil.isCelularValido("")).eq(false);
+    expect(ValidarUtil.isCelularValido("555558888")).eq(false);
   });
 });

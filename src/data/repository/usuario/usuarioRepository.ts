@@ -24,7 +24,7 @@ export class UsuarioRepositoryFake implements IUsuarioRepository {
         id: "357119d753344e02b3f1b37f7eb90bfe",
         nome: "Sophie Novaes",
         email: "sophiebarbararaquelnovaes_@velc.com.br",
-        senha: "adsdassdasdadsa",
+        senha: "q1a1z1",
         tipoPessoa: "FISICA",
         celular: "11986540484",
         cpfCnpj: "19119119100",

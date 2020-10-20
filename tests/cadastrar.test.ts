@@ -1,4 +1,4 @@
-import { assert, expect } from "chai";
+import {  expect } from "chai";
 import { TesteDiInit } from "../src";
 import { IAutenticarApplication } from "../src/application";
 import { CadastrarUsuarioModel } from "../src/application/model";
@@ -41,7 +41,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Senha deve ser preenchida");
+        expect(ex.message).equal("Senha deve ser preenchida");
       });
   });
 
@@ -52,7 +52,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Email deve ser preenchido");
+        expect(ex.message).equal("Email deve ser preenchido");
       });
   });
   it("cadastrar usuário sem tipoPessoa", () => {
@@ -62,7 +62,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "TipoPessoa deve ser preenchido");
+        expect(ex.message).equal("TipoPessoa deve ser preenchido");
       });
   });
 
@@ -73,7 +73,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "CPF/CNPJ deve ser preenchido");
+        expect(ex.message).equal("CPF/CNPJ deve ser preenchido");
       });
   });
 
@@ -84,7 +84,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Digite um CPF válido");
+        expect(ex.message).equal("Digite um CPF válido");
       });
   });
 
@@ -95,7 +95,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Celular deve ser preenchido");
+        expect(ex.message).equal("Celular deve ser preenchido");
       });
   });
   it("cadastrar usuário sem nome", () => {
@@ -104,7 +104,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Nome deve ser preenchido");
+        expect(ex.message).equal("Nome deve ser preenchido");
       });
   });
   it("cadastrar usuário vazio", () => {
@@ -112,9 +112,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.Throw(() => {
-          throw ex;
-        });
+        expect(true).true;
       });
   });
 
@@ -123,10 +121,10 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .then(() => {
-        assert.ok(true);
+        expect(true);
       })
       .catch((ex) => {
-        assert.fail(ex.message);
+        expect(ex.message).false;
       });
   });
 });
@@ -138,7 +136,7 @@ describe("Cadastrar Usuário Pessoa Juridica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "CPF/CNPJ deve ser preenchido");
+        expect(ex.message).eq("CPF/CNPJ deve ser preenchido");
       });
   });
 
@@ -148,7 +146,7 @@ describe("Cadastrar Usuário Pessoa Juridica Teste", () => {
     autenticarApplication
       .cadastrarNovoUsuarioAsync(cadastrarUsuarioModel)
       .catch((ex) => {
-        assert.equal(ex.message, "Digite um CNPJ válido");
+        expect(ex.message).eq("Digite um CNPJ válido");
       });
   });
 
@@ -157,9 +155,9 @@ describe("Cadastrar Usuário Pessoa Juridica Teste", () => {
     autenticarApplication.cadastrarNovoUsuarioAsync(
       cadastrarUsuarioModel
     ).then(()=>{
-      assert.ok(true);
+      expect(true).true
     }).catch(ex=>{
-      assert.fail(ex.message);
+      expect(false).true
     })
   });
 });

@@ -17,7 +17,7 @@ export default (()=>{
   initDomain(container);
   initApplication(container); 
   initApi(container);
-})();
+});
 
 
 export const TesteDiInit = ()=>{
