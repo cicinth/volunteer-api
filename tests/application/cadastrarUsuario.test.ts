@@ -33,7 +33,7 @@ const getCadastrarUsuarioModelCNPJ = (): CadastrarUsuarioModel => {
   return cadastrarUsuarioModelCNPJ;
 };
 
-describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
+describe("Cadastrar usuário pessoa fisica teste", () => {
   it("cadastrar usuário sem senha", () => {
     const cadastrarUsuarioModel = getCadastrarUsuarioModelCPF();
     cadastrarUsuarioModel.senha = undefined;
@@ -129,7 +129,7 @@ describe("Cadastrar Usuário Pessoa Fisica Teste", () => {
   });
 });
 
-describe("Cadastrar Usuário Pessoa Juridica Teste", () => {
+describe("Cadastrar usuário pessoa juridica teste", () => {
   it("cadastrar usuário sem cnpj", () => {
     const cadastrarUsuarioModel = getCadastrarUsuarioModelCNPJ();
     cadastrarUsuarioModel.cpfCnpj = undefined;
