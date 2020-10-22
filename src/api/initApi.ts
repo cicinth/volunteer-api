@@ -2,6 +2,7 @@ import * as awilix from "awilix";
 import * as express from "express";
 import { IAutenticarApplication } from "../application";
 import AutenticarController from "./controllers/autenticarController";
+import UsuarioController from "./controllers/usuarioController";
 import autenticarRouter from "./routers/autenticarRouter";
 import usuarioRouter from "./routers/usuarioRouter";
 
@@ -35,6 +36,6 @@ export default (container: awilix.AwilixContainer) => {
 
 
   autenticarRouter(appExpress,autenticarController);
-  usuarioRouter(appExpress,autenticarController);
+  usuarioRouter(appExpress,usuarioController);
   
 };
