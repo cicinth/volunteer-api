@@ -26,8 +26,7 @@
     "jsonwebtoken": "^8.5.1"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.test.ts",
-    "coverage": "nyc -r lcov -e .ts -x \"*.test.ts\" npm run test",
+    "testes": "mocha -r ts-node/register tests/**/*.test.ts",
     "docker-build":"docker build -t volunteer-api .",
     "docker-run":"docker run volunteer-api"
   }
