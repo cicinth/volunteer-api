@@ -4,6 +4,7 @@ import {
 } from "../../application/model";
 import { IAutenticarApplication } from "../../application";
 import { ApiRegisterType } from "../initApi";
+import * as jwt from "jsonwebtoken";
 
 export default class AutenticarController {
   autenticarApplication: IAutenticarApplication;
