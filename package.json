@@ -27,7 +27,7 @@
   },
   "scripts": {
     "testes": "mocha -r ts-node/register tests/**/*.test.ts",
-    "cobertura": "npx nyc npm run testes",
+    "cobertura": "nyc npm run testes",
     "docker-build":"docker build -t volunteer-api .",
     "docker-run":"docker run volunteer-api"
   }
