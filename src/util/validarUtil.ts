@@ -1,9 +1,11 @@
 export default class ValidarUtil {
   static isCelularValido(celular: string): boolean {
-    return true;
+    celular = celular.replace(/[^\d]+/g,'');	
+    var regex = new RegExp('^((1[1-9])|([2-9][0-9]))((3[0-9]{3}[0-9]{4})|(9[0-9]{3}[0-9]{5}))$'); 
+    return regex.test(celular);
   }
   static isEmailValido(email: string): boolean {
-    return true;
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
   }
 
   static isCPFValido(cpf: string): boolean {

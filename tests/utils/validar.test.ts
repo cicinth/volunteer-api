@@ -7,7 +7,7 @@ describe("Validações Teste", () => {
   });
   it("CPF inválido", () => {
     expect(ValidarUtil.isCPFValido("")).eq(false);
-    expect(ValidarUtil.isCPFValido("191.191.191.11")).eq(false);
+    expect(ValidarUtil.isCPFValido("111.222.333.44")).eq(false);
   });
 
   it("CNPJ valido", () => {
