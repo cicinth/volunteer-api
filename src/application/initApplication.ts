@@ -1,6 +1,7 @@
 import * as awilix from "awilix";
 import { Lifetime } from "awilix";
-import { IUsuarioDomain } from "../domain";
+import { IAcaoDomain, IUsuarioDomain } from "../domain";
+import { AcaoApplication, IAcaoApplication } from "./acaoApplication";
 import {
   AutenticarApplication,
   IAutenticarApplication,
@@ -8,6 +9,7 @@ import {
 
 export interface ApplicationRegisterType {
   usuarioDomain: IUsuarioDomain;
+  acaoDomain: IAcaoDomain;
 }
 
 export default (container: awilix.AwilixContainer) => {
@@ -16,5 +18,8 @@ export default (container: awilix.AwilixContainer) => {
       AutenticarApplication,
       { lifetime: "SINGLETON" }
     ),
+    acaoApplication: awilix.asClass<IAcaoApplication>(AcaoApplication, {
+      lifetime: "SINGLETON",
+    }),
   });
 };
