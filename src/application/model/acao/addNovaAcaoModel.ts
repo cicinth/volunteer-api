@@ -2,6 +2,12 @@ import { IModel } from "../interface/iModel";
 import { ValidoModel } from "../validoModel";
 
 export class AddNovaAcaoModel implements IModel {
+  id?: string;
+  nome?: string;
+  imagemBase64?: string;
+  descricao?: string;
+  
+
   isValido(): ValidoModel {
     if (!this.nome)
       return {
@@ -11,6 +17,5 @@ export class AddNovaAcaoModel implements IModel {
 
     return { isValido: true };
   }
-  id?: string;
-  nome?: string;
+
 }
